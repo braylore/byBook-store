@@ -1,1 +1,1 @@
-export const jsonServerBaseUrl = 'http://localhost:3001';
+export const jsonServerBaseUrl = 'https://bybook1337.herokuapp.com/api';
