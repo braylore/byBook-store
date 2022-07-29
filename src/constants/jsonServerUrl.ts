@@ -1,1 +1,1 @@
-export const jsonServerBaseUrl = 'hhttps://storedb1337.herokuapp.com/api';
+export const jsonServerBaseUrl = 'https://storedb1337.herokuapp.com/api';
