@@ -21,7 +21,7 @@ import { useHttp } from 'hooks/useHttp';
 import { useColorMode } from 'hooks/useColorMode';
 import { basketItemAdminRemove } from 'store/slices/basketSlice';
 import { notify } from 'utils/notify';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlProducts } from 'constants/baseUrls';
 
 const StyledModal = styled((props: ModalProps) => <Modal {...props} />)({
   display: 'flex',
@@ -94,7 +94,7 @@ const AdminProductRemoveAndChangeListModal: FC<IAdminProductRemoveAndChangeListM
   const handleRemoveClick = async (id: string) => {
     try {
       setRemoveLoading(true);
-      await request(`${jsonServerBaseUrl}/products/${id}`, 'DELETE');
+      await request(`${baseUrlProducts}/${id}`, 'DELETE');
       if (slicedProductsList.length === 1 && currentPage !== 1) {
         setCurrentPage(totalPages - 1);
       }

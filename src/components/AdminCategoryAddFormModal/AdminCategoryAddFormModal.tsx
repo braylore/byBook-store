@@ -6,7 +6,7 @@ import { notify } from 'utils/notify';
 import { useColorMode } from 'hooks/useColorMode';
 import { useDidMountEffect } from 'hooks/useDidMountEffect';
 import { useHttp } from 'hooks/useHttp';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlCategories } from 'constants/baseUrls';
 import { v4 as uuidv4 } from 'uuid';
 
 const StyledBtn = styled((props: ButtonProps) => (
@@ -57,7 +57,7 @@ const AdminCategoryAddFormModal: FC<IAdminCategoryAddFormModalProps> = ({ handle
   const onSubmit: SubmitHandler<IAdminCategoryFormModalSubmit> = async (data) => {
     try {
       setAddLoading(true);
-      await request(`${jsonServerBaseUrl}/categories`, 'POST', JSON.stringify({ id: uuidv4(), ...data }));
+      await request(baseUrlCategories, 'POST', JSON.stringify({ id: uuidv4(), ...data }));
       notify('success', 'Категория была успешно добавлена', mode);
       reset();
     } catch {

@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { useHttp } from 'hooks/useHttp';
 import { IProducts } from 'types/IProducts';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlProducts } from 'constants/baseUrls';
 
 export const fetchAllProducts = createAsyncThunk('products/fetchAllProducts', async (_, thunkAPI) => {
   const { request } = useHttp();
   try {
-    const response = (await request(`${jsonServerBaseUrl}/products`)) as IProducts[];
+    const response = (await request(baseUrlProducts)) as IProducts[];
     return response;
   } catch (e) {
     return thunkAPI.rejectWithValue('Произошла ошибка при загрузке продуктов');
@@ -16,7 +16,7 @@ export const fetchAllProducts = createAsyncThunk('products/fetchAllProducts', as
 export const fetchProductById = createAsyncThunk('products/fetchProductById', async (id: string, thunkAPI) => {
   const { request } = useHttp();
   try {
-    const response = (await request(`${jsonServerBaseUrl}/products/${id}`)) as IProducts;
+    const response = (await request(`${baseUrlProducts}/${id}`)) as IProducts;
     return response;
   } catch (e) {
     return thunkAPI.rejectWithValue('Произошла ошибка при загрузке продукта');

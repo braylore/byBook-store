@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { useHttp } from 'hooks/useHttp';
 import { ICategories } from 'types/ICategories';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlCategories } from 'constants/baseUrls';
 
 export const fetchAllCategories = createAsyncThunk('categories/fetchAllCategories', async (_, thunkAPI) => {
   const { request } = useHttp();
   try {
-    const response = (await request(`${jsonServerBaseUrl}/categories`)) as ICategories[];
+    const response = (await request(baseUrlCategories)) as ICategories[];
     return response;
   } catch (e) {
     return thunkAPI.rejectWithValue('Произошла ошибка при загрузке категорий');

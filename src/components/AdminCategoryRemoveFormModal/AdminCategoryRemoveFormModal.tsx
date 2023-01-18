@@ -21,7 +21,7 @@ import { fetchAllProducts } from 'store/slices/productsSlice';
 import { getUniqueCategories } from 'utils/getUniqueCategories';
 import { IAdminCategoryFormModalSubmit } from 'components/AdminCategoryAddFormModal/AdminCategoryAddFormModal';
 import { useHttp } from 'hooks/useHttp';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlCategories } from 'constants/baseUrls';
 
 const ErrorMsg = styled(Typography)({
   padding: '1rem',
@@ -81,7 +81,7 @@ const AdminCategoryRemoveFormModal: FC<IAdminCategoryRemoveFormModalProps> = ({ 
     const { categoryName: id } = data;
     try {
       setRemoveLoading(true);
-      await request(`${jsonServerBaseUrl}/categories/${id}`, 'DELETE');
+      await request(`${baseUrlCategories}/${id}`, 'DELETE');
       dispatch(categoriesRemoveById(id));
       reset();
       notify('success', 'Категория была успешно удалена', mode);

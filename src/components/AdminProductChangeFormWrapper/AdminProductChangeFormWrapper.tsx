@@ -12,7 +12,7 @@ import { basketItemAdminChange } from 'store/slices/basketSlice';
 import { useAppDispatch } from 'hooks/redux';
 import { productChangeById } from 'store/slices/productsSlice';
 import { notify } from 'utils/notify';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlProducts } from 'constants/baseUrls';
 
 interface IAdminProductChangeFormWrapperProps {
   product: IProducts;
@@ -38,7 +38,7 @@ const AdminProductChangeFormWrapper: FC<IAdminProductChangeFormWrapperProps> = (
   const onChangeFormSubmit: SubmitHandler<IAdminProductFormSubmit> = async (data) => {
     try {
       setChangeLoading(true);
-      await request(`${jsonServerBaseUrl}/products/${product.id}`, 'PUT', JSON.stringify({ ...data }));
+      await request(`${baseUrlProducts}/${product.id}`, 'PUT', JSON.stringify({ ...data }));
       notify('success', 'Продукт был успешно изменен', mode);
       dispatch(basketItemAdminChange({ id: product.id, ...data }));
       dispatch(productChangeById({ id: product.id, ...data }));

@@ -13,7 +13,7 @@ import { notify } from 'utils/notify';
 import AdminCategoryRemoveFormModal from 'components/AdminCategoryRemoveFormModal/AdminCategoryRemoveFormModal';
 import { v4 as uuidv4 } from 'uuid';
 import { useHttp } from 'hooks/useHttp';
-import { jsonServerBaseUrl } from 'constants/jsonServerUrl';
+import { baseUrlProducts } from 'constants/baseUrls';
 import 'react-toastify/dist/ReactToastify.css';
 
 const StyledBtn = styled((props: ButtonProps) => (
@@ -72,7 +72,7 @@ const AdminPage = () => {
   const onAddFormSubmit: SubmitHandler<IAdminProductFormSubmit> = async (data) => {
     try {
       setAddLoading(true);
-      await request(`${jsonServerBaseUrl}/products`, 'POST', JSON.stringify({ id: uuidv4(), ...data }));
+      await request(baseUrlProducts, 'POST', JSON.stringify({ id: uuidv4(), ...data }));
       notify('success', 'Продукт был успешно добавлен', mode);
     } catch {
       notify('error', 'Произошла ошибка при добавлении продукта', mode);
