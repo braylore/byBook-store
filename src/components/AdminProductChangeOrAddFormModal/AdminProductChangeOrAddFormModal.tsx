@@ -222,7 +222,7 @@ const AdminProductChangeOrAddFormModal: FC<IAdminProductChangeOrAddFormModalProp
                         disabled={isCategoriesListLoading}
                         select
                         sx={{
-                          maxWidth: '742px'
+                          maxWidth: '100%'
                         }}
                         SelectProps={{
                           multiple: true,
